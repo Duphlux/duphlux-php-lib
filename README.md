@@ -11,12 +11,12 @@ The preferred way to install this extension is through composer.
 Either run
 
 ```bash
-composer require Duphlux/duphlux-php-lib
+composer require duphlux/duphlux
 ```
 
 **or**
 
-add '"Duphlux/duphlux-php-lib": "1.0.0"' to the require section of your composer.json file, then run:
+add '"duphlux/duphlux": "1.0.0"' to the require section of your composer.json file, then run:
 
 ```bash
 composer install
@@ -35,7 +35,7 @@ There are two operations that can be performed on the system:
     use duphlux/Duphlux;
 
     //duphlux account token
-    $token = "45111f5f33d1701752fa6ebae644dff32403880c6";
+    $token = [your-duphlux-account-token];
 
     // Instantiate the duphlux class, requires your account token
     $duphlux = new Duphlux($token);
@@ -45,8 +45,8 @@ There are two operations that can be performed on the system:
     $reference = $duphlux->generateRef(32);
 
     //set up the request parameters for the authentication request
-    $options = ['phone_number'=>'08079189198','transaction_reference'=>$reference,
-              'timeout'=>60,'redirect_url'=>'http://www.mysite.com/duphlux-redirect'];
+    $options = ['phone_number'=>[phone-number-to-verify],'transaction_reference'=>$reference,
+              'timeout'=>60,'redirect_url'=>[my-redirect-url]];
 
     // Initializing an authentication request
     //you can chain this method with the redirect method to immediately redirect to the duphlux verification url
@@ -90,7 +90,7 @@ There are two operations that can be performed on the system:
     use duphlux/Duphlux;
 
     //duphlux account token
-    $token = "45111f5f33d1701752fa6ebae644dff32403880c6";
+    $token = [your-duphlux-account-token];
 
     // Instantiate the duphlux class
     $duphlux = new Duphlux($token);
@@ -128,10 +128,13 @@ There are two operations that can be performed on the system:
     use duphlux/Duphlux;
 
     //duphlux account token
-    $token = "45111f5f33d1701752fa6ebae644dff32403880c6";
+    $token = [your-duphlux-account-token];
 
     //previous authentication request reference for which we want to inquire about the status
     $reference = getReferenceFromMyDb();
+
+    // Instantiate the duphlux class
+    $duphlux = new Duphlux($token);
 
     //this sets the beforeSend handler which is triggered before a any request is made
     //this can be any callable (anonymous function or class method)
@@ -148,9 +151,6 @@ There are two operations that can be performed on the system:
         //here you can now perform any logic u want
         log($duphlux->getResponse());
     };
-
-    // Instantiate the duphlux class
-    $duphlux = new Duphlux($token);
 
     // verify the status of an authentication request
     // the previous authentication request reference is required, it is passed as a parameter
