@@ -1,0 +1,21 @@
+{
+  "name": "duphlux",
+  "description": "Duphlux API PHP Library",
+  "keywords": ["duphlux", "php", "library", "phone number verification", "phone number", "api", "smladeoye"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "smladeoye",
+      "email": "smladeoye@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "duphlux\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">5.4"
+  }
+}
